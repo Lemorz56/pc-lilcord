@@ -12,40 +12,45 @@ function playSound(url, volume) {
 class LilSoundPlugin extends Plugin {
     async startPlugin() {
         const SoundPlayer = await getModule(["playSound"]);
-        inject("tp-playSound", SoundPlayer, "playSound", (e) => {
+        inject("lilcord-playSound", SoundPlayer, "playSound", (e) => {
             console.log(e[0]);
             if (e[0] === "message1") {
-                playSound("https://raw.githubusercontent.com/DigitalJokerMan/pc-dootdoot/master/dootdoot.ogg", e[1]);
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/message.mp3?raw=true", e[1]);
                 return false;
             } else if (e[0] === "unmute") {
-                playSound("https://raw.githubusercontent.com/DigitalJokerMan/pc-dootdoot/master/mute1.ogg", e[1]);
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/unmute.mp3?raw=true", e[1]);
                 return false;
             } else if (e[0] === "mute") {
-                playSound("https://raw.githubusercontent.com/DigitalJokerMan/pc-dootdoot/master/mute2.ogg", e[1]);
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/mute.mp3?raw=true", e[1]);
                 return false;
             } else if (e[0] === "undeafen") {
-                playSound("https://github.com/ashqal/zzAudioPlayer/blob/master/sample/3680_0006_8000.wav?raw=true", e[1]);
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/undeafen.mp3?raw=true", e[1]);
                 return false;
             } else if (e[0] === "deafen") {
-                playSound("", e[1]);
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/deafen.mp3?raw=true", e[1]);
                 return false;
             } else if (e[0] === "user_join") {
-                playSound("https://raw.githubusercontent.com/Lemorz56/pc-lilcord/master/user_join.mp3", e[1]);
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/user_join.mp3?raw=true", e[1]);
                 return false;
             } else if (e[0] === "user_leave") {
-                playSound("https://raw.githubusercontent.com/DigitalJokerMan/pc-dootdoot/master/booey.ogg", e[1]);
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/user_leave.mp3?raw=true", e[1]);
                 return false;
             } else if (e[0] === "disconnect") {
-                playSound("https://raw.githubusercontent.com/DigitalJokerMan/pc-dootdoot/master/booey2.ogg", e[1]);
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/disconnect.mp3?raw=true", e[1]);
+                return false;
+            } else if (e[0] === "stream_started") {
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/stream_started.mp3?raw=true", e[1]);
+                return false;
+            } else if (e[0] === "stream_ended") {
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/stream_stopped.mp3?raw=true", e[1]);
                 return false;
             }
-
             return e;
         }, true);
     }
 
     pluginWillUnload() {
-        uninject("tp-playSound");
+        uninject("lilcord-playSound");
     }
 }
 
