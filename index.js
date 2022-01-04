@@ -14,6 +14,7 @@ class LilSoundPlugin extends Plugin {
         const SoundPlayer = await getModule(["playSound"]);
         inject("lilcord-playSound", SoundPlayer, "playSound", (e) => {
             console.log(e[0]);
+            console.log("[DBG] " + window.location.pathname);
             if (e[0] === "message1") {
                 playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/message.mp3?raw=true", e[1]);
                 return false;
@@ -44,7 +45,14 @@ class LilSoundPlugin extends Plugin {
             } else if (e[0] === "stream_ended") {
                 playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/stream_stopped.mp3?raw=true", e[1]);
                 return false;
+            } else if (e[0] === "stream_user_joined") {
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/viewer_join.mp3?raw=true", e[1]);
+                return false;
+            } else if (e[0] === "stream_user_left") {
+                playSound("https://github.com/Lemorz56/pc-lilcord/blob/main/lil-sounds/viewer_leave.mp3?raw=true", e[1]);
+                return false;
             }
+
             return e;
         }, true);
     }
